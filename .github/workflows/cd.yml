@@ -22,20 +22,13 @@ jobs:
       env:
         EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
-    - name: Deploy to EC2
-      run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
-          echo "Pulling and running backend container"
-          docker pull nongdev/product_management_backend:latest
-          docker stop backend || true
-          docker rm backend || true
-          docker run -d --name backend -p 8888:8888 nongdev/product_management_backend:latest
-          
-          echo "Pulling and running frontend container"
-          docker pull nongdev/product_management_frontend:latest
-          docker stop frontend || true
-          docker rm frontend || true
-          docker run -d --name frontend -p 5000:5000 nongdev/product_management_frontend:latest
-        EOF
-      env:
-        EC2_PUBLIC_IP: ${{ secrets.EC2_PUBLIC_IP }}
+     - name: Set up Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.17.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Deploy to EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa ubuntu@${{ env.EC2_PUBLIC_IP }} 'cd /home/ubuntu/product_management && git pull && sudo docker-compose up -d --build'
