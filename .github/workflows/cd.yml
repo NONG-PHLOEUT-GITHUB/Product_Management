@@ -16,11 +16,11 @@ jobs:
 
     - name: Set up SSH
       run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-        env:
-          EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        mkdir -p ~/.ssh
+        echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+      env:
+        EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
     - name: Deploy Docker Images to EC2
       run: |
