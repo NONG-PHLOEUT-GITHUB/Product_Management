@@ -26,10 +26,10 @@ jobs:
 
     - name: Build and push backend Docker image
       run: |
-        docker build -t nongdev/product_management_backend ./backend
+        docker build -t nongdev/product_management_backend ./Backend
         docker push nongdev/product_management_backend:latest
 
     - name: Build and push frontend Docker image
       run: |
-        docker build -t nongdev/product_management_frontend ./frontend
+        docker build -t nongdev/product_management_frontend ./Frontend
         docker push nongdev/product_management_frontend:latest
