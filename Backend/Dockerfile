@@ -1,5 +1,5 @@
 # Use the official Lucee (open-source CFML) image
-FROM lucee/lucee6:latest
+FROM lucee/lucee5:latest
 
 # Set the working directory
 WORKDIR /var/www
