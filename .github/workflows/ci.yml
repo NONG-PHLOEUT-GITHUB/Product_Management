@@ -21,7 +21,12 @@ jobs:
       run: echo "${{ env.DOCKER_PASSWORD }}" | docker login -u $DOCKER_USERNAME --password-stdin
 
       
-    - name: Build the Docker image
-      run: docker build -t nongdev/product_management .
-    - name: Push to Dockerhub
-      run: docker push nongdev/product_management:latest
+     - name: Build and push backend Docker image
+      run: |
+        docker build -t nongdev/product_management_backend ./backend
+        docker push nongdev/product_management_backend:latest
+
+    - name: Build and push frontend Docker image
+      run: |
+        docker build -t nongdev/product_management_frontend ./frontend
+        docker push nongdev/product_management_frontend:latest
