@@ -56,7 +56,7 @@ component  {
             }
           }
         }
-        writeDump(application)
+        // writeDump(application)
 
         restInitApplication( 
             dirPath= application.repBase & 'routes\api', 

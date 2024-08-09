@@ -1,5 +1,5 @@
 {
-    "name":"PRACTICE_EXAM_API",
+    "name":"PRODUCT_MANAGEMENT_API",
     "app":{
         "cfengine":"lucee@6",
         "restMappings":"/rest/*"
