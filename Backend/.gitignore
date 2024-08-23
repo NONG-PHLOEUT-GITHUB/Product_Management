@@ -2,3 +2,9 @@
 .env
 .env.local
 .env.*.local
+
+lib
+
+.htaccess
+
+modules/*

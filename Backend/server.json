@@ -1,9 +1,5 @@
 {
     "name":"PRODUCT_MANAGEMENT_API",
-    "app":{
-        "cfengine":"lucee@6",
-        "restMappings":"/rest/*"
-    },
     "force":true,
     "openbrowser":true,
     "debug":true,
@@ -19,6 +15,22 @@
         "SSL":{
             "enable":"${SSL}",
             "port":"${SSLPORT}"
-        }
+        },
+        "rules":[
+            "set(attribute='%{o,Access-Control-Allow-Origin}', value='*')",
+            "set(attribute='%{o,Access-Control-Allow-Headers}', value='Accept, Authorization, Content-Type, Origin, Pragma, X-Requested-With, access-control-allow-origin')",
+            "set(attribute='%{o,Access-Control-Allow-Methods}', value='GET,HEAD,OPTIONS,POST,PUT,DELETE')",
+            "set(attribute='%{o,Access-Control-Allow-Credentials}', value='true')"
+        ]
+    },
+    "trayEnable":true,
+    "trayicon":"favicon-16x16.png",
+    "app":{
+        "cfengine":"lucee@6",
+        "serverHomeDirectory":"${LIBDIRS}",
+        "restMappings":"/rest/*"
+    },
+    "cfconfig":{
+        "file":".cfconfig.json"
     }
 }
