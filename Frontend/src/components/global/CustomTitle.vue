@@ -5,7 +5,6 @@
         <v-icon class="mr-2" v-if="icon" color="primary">
           {{ icon }}
         </v-icon>
-        <!-- {{ $route.name }} -->
         <slot />
       </h2>
     </div>
